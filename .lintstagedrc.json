@@ -1,0 +1,5 @@
+{
+  "*.{ts,tsx,js,jsx}": ["bunx biome check --write --unsafe"],
+  "*.css": ["bunx stylelint --fix", "bunx biome format --write"],
+  "*.{json,md}": ["bunx biome format --write"]
+}

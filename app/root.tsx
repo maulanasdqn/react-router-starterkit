@@ -1,3 +1,5 @@
+import { QueryClientProvider } from "@tanstack/react-query";
+import React from "react";
 import {
   isRouteErrorResponse,
   Links,
@@ -8,7 +10,33 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
+import { queryClient } from "./libs/tanstack-react-query/query-client";
 import "./app.css";
+
+// DevTools component with dynamic import
+const DevTools = () => {
+  const [DevToolsComponent, setDevToolsComponent] = React.useState<React.ComponentType | null>(
+    null
+  );
+
+  React.useEffect(() => {
+    if (import.meta.env.DEV) {
+      import("@tanstack/react-query-devtools")
+        .then(({ ReactQueryDevtools }) => {
+          setDevToolsComponent(() => ReactQueryDevtools);
+        })
+        .catch(() => {
+          // DevTools not available
+        });
+    }
+  }, []);
+
+  if (import.meta.env.DEV && DevToolsComponent) {
+    return <DevToolsComponent />;
+  }
+
+  return null;
+};
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -42,20 +70,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Outlet />
+      <DevTools />
+    </QueryClientProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
   let details = "An unexpected error occurred.";
   let stack: string | undefined;
-
   if (isRouteErrorResponse(error)) {
     message = error.status === 404 ? "404" : "Error";
     details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
+      error.status === 404 ? "The requested page could not be found." : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;

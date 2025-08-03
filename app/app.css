@@ -1,15 +1,138 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Rose Pine Theme Colors */
+  --color-rose-pine-base: #191724;
+  --color-rose-pine-surface: #1f1d2e;
+  --color-rose-pine-overlay: #26233a;
+  --color-rose-pine-muted: #6e6a86;
+  --color-rose-pine-subtle: #908caa;
+  --color-rose-pine-text: #e0def4;
+  --color-rose-pine-love: #eb6f92;
+  --color-rose-pine-gold: #f6c177;
+  --color-rose-pine-rose: #ebbcba;
+  --color-rose-pine-pine: #31748f;
+  --color-rose-pine-foam: #9ccfd8;
+  --color-rose-pine-iris: #c4a7e7;
+  --color-rose-pine-highlight-low: #21202e;
+  --color-rose-pine-highlight-med: #403d52;
+  --color-rose-pine-highlight-high: #524f67;
+
+  /* Rose Pine Moon Variant */
+  --color-rose-pine-moon-base: #232136;
+  --color-rose-pine-moon-surface: #2a273f;
+  --color-rose-pine-moon-overlay: #393552;
+  --color-rose-pine-moon-muted: #6e6a86;
+  --color-rose-pine-moon-subtle: #908caa;
+  --color-rose-pine-moon-text: #e0def4;
+  --color-rose-pine-moon-love: #eb6f92;
+  --color-rose-pine-moon-gold: #f6c177;
+  --color-rose-pine-moon-rose: #ea9a97;
+  --color-rose-pine-moon-pine: #3e8fb0;
+  --color-rose-pine-moon-foam: #9ccfd8;
+  --color-rose-pine-moon-iris: #c4a7e7;
+
+  /* Rose Pine Dawn Variant */
+  --color-rose-pine-dawn-base: #faf4ed;
+  --color-rose-pine-dawn-surface: #fffaf3;
+  --color-rose-pine-dawn-overlay: #f2e9e1;
+  --color-rose-pine-dawn-muted: #9893a5;
+  --color-rose-pine-dawn-subtle: #797593;
+  --color-rose-pine-dawn-text: #575279;
+  --color-rose-pine-dawn-love: #b4637a;
+  --color-rose-pine-dawn-gold: #ea9d34;
+  --color-rose-pine-dawn-rose: #d7827e;
+  --color-rose-pine-dawn-pine: #286983;
+  --color-rose-pine-dawn-foam: #56949f;
+  --color-rose-pine-dawn-iris: #907aa9;
+
+  /* shadcn/ui compatible variables using Rose Pine Base */
+  --background: var(--color-rose-pine-base);
+  --foreground: var(--color-rose-pine-text);
+  --card: var(--color-rose-pine-surface);
+  --card-foreground: var(--color-rose-pine-text);
+  --popover: var(--color-rose-pine-surface);
+  --popover-foreground: var(--color-rose-pine-text);
+  --primary: var(--color-rose-pine-iris);
+  --primary-foreground: var(--color-rose-pine-base);
+  --secondary: var(--color-rose-pine-overlay);
+  --secondary-foreground: var(--color-rose-pine-text);
+  --muted: var(--color-rose-pine-overlay);
+  --muted-foreground: var(--color-rose-pine-muted);
+  --accent: var(--color-rose-pine-foam);
+  --accent-foreground: var(--color-rose-pine-base);
+  --destructive: var(--color-rose-pine-love);
+  --destructive-foreground: var(--color-rose-pine-text);
+  --border: var(--color-rose-pine-highlight-med);
+  --input: var(--color-rose-pine-surface);
+  --ring: var(--color-rose-pine-iris);
+  --chart-1: var(--color-rose-pine-love);
+  --chart-2: var(--color-rose-pine-gold);
+  --chart-3: var(--color-rose-pine-rose);
+  --chart-4: var(--color-rose-pine-pine);
+  --chart-5: var(--color-rose-pine-iris);
+
+  /* radius for rounded corners */
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Use Rose Pine Moon for dark variant */
+  --background: var(--color-rose-pine-moon-base);
+  --foreground: var(--color-rose-pine-moon-text);
+  --card: var(--color-rose-pine-moon-surface);
+  --card-foreground: var(--color-rose-pine-moon-text);
+  --popover: var(--color-rose-pine-moon-surface);
+  --popover-foreground: var(--color-rose-pine-moon-text);
+  --primary: var(--color-rose-pine-moon-iris);
+  --primary-foreground: var(--color-rose-pine-moon-base);
+  --secondary: var(--color-rose-pine-moon-overlay);
+  --secondary-foreground: var(--color-rose-pine-moon-text);
+  --muted: var(--color-rose-pine-moon-overlay);
+  --muted-foreground: var(--color-rose-pine-moon-muted);
+  --accent: var(--color-rose-pine-moon-foam);
+  --accent-foreground: var(--color-rose-pine-moon-base);
+  --destructive: var(--color-rose-pine-moon-love);
+  --destructive-foreground: var(--color-rose-pine-moon-text);
+  --border: var(--color-rose-pine-moon-overlay);
+  --input: var(--color-rose-pine-moon-surface);
+  --ring: var(--color-rose-pine-moon-iris);
+}
+
+@media (prefers-color-scheme: light) {
+  .light {
+    /* Use Rose Pine Dawn for light variant */
+    --background: var(--color-rose-pine-dawn-base);
+    --foreground: var(--color-rose-pine-dawn-text);
+    --card: var(--color-rose-pine-dawn-surface);
+    --card-foreground: var(--color-rose-pine-dawn-text);
+    --popover: var(--color-rose-pine-dawn-surface);
+    --popover-foreground: var(--color-rose-pine-dawn-text);
+    --primary: var(--color-rose-pine-dawn-iris);
+    --primary-foreground: var(--color-rose-pine-dawn-base);
+    --secondary: var(--color-rose-pine-dawn-overlay);
+    --secondary-foreground: var(--color-rose-pine-dawn-text);
+    --muted: var(--color-rose-pine-dawn-overlay);
+    --muted-foreground: var(--color-rose-pine-dawn-muted);
+    --accent: var(--color-rose-pine-dawn-foam);
+    --accent-foreground: var(--color-rose-pine-dawn-base);
+    --destructive: var(--color-rose-pine-dawn-love);
+    --destructive-foreground: var(--color-rose-pine-dawn-text);
+    --border: var(--color-rose-pine-dawn-overlay);
+    --input: var(--color-rose-pine-dawn-surface);
+    --ring: var(--color-rose-pine-dawn-iris);
+  }
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
 }

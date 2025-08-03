@@ -4,3 +4,13 @@
 # React Router
 /.react-router/
 /build/
+
+# Environment variables
+.env
+.env.local
+
+# Database
+database.sqlite
+
+*storybook.log
+storybook-static
